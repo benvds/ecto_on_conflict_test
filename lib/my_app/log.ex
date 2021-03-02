@@ -84,9 +84,11 @@ defmodule MyApp.Log do
 
     Repo.insert(changeset,
       on_conflict: on_conflict,
-      conflict_target: [:subject, :update_allowed]
+      conflict_target: [:subject, :update_allowed],
+      stale_error_field: :subject
     )
 
+    # data may be stale, fetch latest from db
     Entry
     |> where(
       subject: ^get_field(changeset, :subject),

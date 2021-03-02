@@ -104,9 +104,6 @@ defmodule MyApp.LogTest do
 
       assert entry_one.note == "phoenix 1"
 
-      # (Ecto.StaleEntryError) attempted to insert a stale struct
-      # when an on_conflict returns 0 row affected ecto errors out
-      # https://elixirforum.com/t/handling-upsert-stale-error/34734/4
       assert entry_two =
                Log.sync_entry(%{
                  note: "phoenix 2",
